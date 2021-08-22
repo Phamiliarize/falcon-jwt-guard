@@ -15,10 +15,14 @@ with low learning cost through [**native "before hooks"**](https://falcon.readth
 
  ## Basic Usage
 
+```
+pip install falcon-jwt-guard
+```
+
 Instance a Guard object. After taking a secret, you can pass [several configuration options](#) via kwargs.
 
 ```
-from jwt_guard import Guard
+from falcon_jwt_guard import Guard
 
 auth = Guard("secret")
 ```

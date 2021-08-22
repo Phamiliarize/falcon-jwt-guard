@@ -1,8 +1,8 @@
 from distutils.core import setup
 
 setup(
-  name = 'jwt_guard',
-  packages = ['jwt_guard'],
+  name = 'falcon-jwt-guard',
+  packages = ['falcon_jwt_guard'],
   version = '0.0.1',
   license='MIT',
   description = 'Simple JWT Authentication and nothing else for Falcon REST API.',
