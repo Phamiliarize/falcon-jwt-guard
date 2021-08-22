@@ -66,3 +66,18 @@ Depending on your usage pattern `auth` can be put instanced in a central file li
 All contributions are always welcome. Being a security solution, the more the better. As this is a rather small package there's no system in place. Feel free to open a pull request!
 
 We don't adopt any specific code of conduct but the general rule of thumb is don't be a jerk- golden rule it.
+
+### Test Coverage
+
+Contributions should check to ensure that coverage meets at minimum current main branch quality.
+
+```
+Name                           Stmts   Miss  Cover
+--------------------------------------------------
+falcon_jwt_guard/__init__.py       1      0   100%
+falcon_jwt_guard/guard.py         38      5    87%
+tests/__init__.py                  0      0   100%
+tests/guard_test.py               59      1    98%
+--------------------------------------------------
+TOTAL                             98      6    94%
+```
