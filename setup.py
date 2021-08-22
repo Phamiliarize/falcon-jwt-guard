@@ -9,7 +9,7 @@ setup(
   author = 'Jesse Pham',
   author_email = '10214230+Phamiliarize@users.noreply.github.com',
   url = 'https://github.com/Phamiliarize/falcon-jwt-guard',
-  download_url = 'https://github.com/user/reponame/archive/v_01.tar.gz',
+  download_url = 'https://github.com/Phamiliarize/falcon-jwt-guard/archive/refs/tags/v0.0.3.tar.gz',
   keywords = ['falcon', 'rest', 'api', 'jwt', 'auth'],
   install_requires=[
           'falcon',
