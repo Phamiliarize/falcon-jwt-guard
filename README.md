@@ -58,7 +58,7 @@ class Message:
         pass
 ```
 
-Depending on your usage pattern `auth` can be put instanced in a central file like "app" or "main" and exported out and used by other resources. You can also create multiple Guard instances, which might allow you to do thinks such as having tighter enforcements on areas like "billing" versus other areas of your API. Check out our [API documentation](#) for more details on how you can customize things.
+Depending on your usage pattern `auth` can be put instanced in a central file like "app" or "main" and exported out and used by other resources. You can also create multiple Guard instances, which might allow you to do things such as having tighter enforcements on areas like "billing" versus other areas of your API. Check out our [API documentation](#) for more details on how you can customize things.
 
 
 ## Call for Contributions
