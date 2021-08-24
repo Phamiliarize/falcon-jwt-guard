@@ -26,9 +26,13 @@ class TestGuard(unittest.TestCase):
         b = testing.simulate_get(app, '/test', headers={"Authorization":f"{token}"})
         c = testing.simulate_get(app, '/test', headers={"Authorization":f"Boss {token}"})
 
+        # Force a decode exception (jwt.exceptions.InvalidTokenError)
+        d = testing.simulate_get(app, '/test', headers={"Authorization":f"Bearer 43gfj30nc3fn340dfnehello!"})
+
         self.assertEqual(a.status_code, 401)
         self.assertEqual(b.status_code, 401)
         self.assertEqual(c.status_code, 401)
+        self.assertEqual(d.status_code, 401)
 
     def test_expiration(self):
         app = falcon.App()
@@ -89,6 +93,40 @@ class TestGuard(unittest.TestCase):
         self.assertEqual(b.status_code, 401)
         # c
         self.assertEqual(c.status_code, 401)
+
+    def test_token_options(self):
+        app = falcon.App()
+        auth = Guard("TEST", issuer="voltron")
+        # Test general creation
+        token_a = auth.generate_token({"user": 7802}, issued=True, starts=timedelta(seconds=-30))
+        
+        # Test if NBF blocks invalid tokens
+        token_b = auth.generate_token({"user": 7802}, starts=timedelta(seconds=120))
+
+        @falcon.before(auth)
+        class Test:
+            def on_get(self, req, resp):
+                resp.text = json.dumps(req.context.claims)
+
+        test = Test()
+
+        app.add_route('/test', test)
+
+        # Testing for presence of options
+        a = testing.simulate_get(app, '/test', headers={"Authorization":f"Bearer {token_a}"})
+
+        # Testing that NBF causes an invalid token
+        b = testing.simulate_get(app, '/test', headers={"Authorization":f"Bearer {token_b}"})
+
+        # a
+        self.assertIn("iss", a.json)
+        self.assertEqual(a.json["iss"], "voltron")
+        self.assertIn("nbf", a.json)
+        self.assertIn("iat", a.json)
+
+        # b
+        self.assertEqual(b.status_code, 401)
+
 
 if __name__ == '__main__':
     unittest.main()

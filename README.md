@@ -72,12 +72,10 @@ We don't adopt any specific code of conduct but the general rule of thumb is don
 Contributions should check to ensure that coverage meets at minimum current main branch quality.
 
 ```
-Name                           Stmts   Miss  Cover
---------------------------------------------------
+Name                           Stmts   Miss  Cover   Missing
+------------------------------------------------------------
 falcon_jwt_guard/__init__.py       1      0   100%
-falcon_jwt_guard/guard.py         38      5    87%
-tests/__init__.py                  0      0   100%
-tests/guard_test.py               59      1    98%
---------------------------------------------------
-TOTAL                             98      6    94%
+falcon_jwt_guard/guard.py         38      0   100%
+------------------------------------------------------------
+TOTAL                             39      0   100%
 ```
