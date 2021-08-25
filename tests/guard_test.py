@@ -127,6 +127,28 @@ class TestGuard(unittest.TestCase):
         # b
         self.assertEqual(b.status_code, 401)
 
+    def test_user_loader(self):
+        app = falcon.App()
+        auth = Guard("TEST", issuer="voltron", user_loader=lambda claims : { "user": claims["user"] })
+        # Test general creation
+        token_a = auth.generate_token({"user": 7802})
+
+        @falcon.before(auth)
+        class Test:
+            def on_get(self, req, resp):
+                # print(req.context.user)
+                resp.text = json.dumps(req.context.user)
+
+        test = Test()
+
+        app.add_route('/test', test)
+
+        # Testing for user loader pushing user into request
+        a = testing.simulate_get(app, '/test', headers={"Authorization":f"Bearer {token_a}"})
+
+        self.assertIn("user", a.json)
+        self.assertEqual(a.json["user"], 7802)
+
 
 if __name__ == '__main__':
     unittest.main()

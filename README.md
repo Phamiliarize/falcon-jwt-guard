@@ -75,7 +75,7 @@ Contributions should check to ensure that coverage meets at minimum current main
 Name                           Stmts   Miss  Cover   Missing
 ------------------------------------------------------------
 falcon_jwt_guard/__init__.py       1      0   100%
-falcon_jwt_guard/guard.py         38      0   100%
+falcon_jwt_guard/guard.py         42      0   100%
 ------------------------------------------------------------
-TOTAL                             39      0   100%
+TOTAL                             43      0   100%
 ```

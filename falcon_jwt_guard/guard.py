@@ -15,6 +15,7 @@ class Guard:
         self.secret = secret
         self.issuer = kwargs.get('issuer', None)
         self.leeway = kwargs.get('leeway', 0)
+        self.user_loader = kwargs.get('user_loader', None)
 
     def verify_token(self, token):
         try:
@@ -55,4 +56,9 @@ class Guard:
         if len(token) != 2 or token[0] != 'Bearer':
             raise falcon.HTTPUnauthorized(description='Authorization header present but not the supported bearer schema. Format is: "Bearer <token>"')    
 
-        req.context.claims = self.verify_token(token[1])
+        claims = self.verify_token(token[1])
+        req.context.claims = claims
+        if self.user_loader:
+            req.context.user = self.user_loader(claims)
+
+            
