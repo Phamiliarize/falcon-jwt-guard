@@ -1,3 +1,6 @@
+# this repo is no longer maintained
+Please fork if you wish to use this- but this unmaintained. It's paramount to not use unmaintained code in security contexts ;) 
+
 # falcon-jwt-guard
 
 `falcon-jwt-guard` is a package that implements authentication for [Falcon](https://github.com/falconry/falcon) resources down to the **HTTP request method**. It is light weight and offers a very simple API to create JWT tokens and check them on request.
